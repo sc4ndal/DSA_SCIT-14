@@ -24,5 +24,10 @@ public class C008_Radix {
 		System.out.println(b);
 		System.out.println(c);
 		System.out.println(d);
+		
+		// 16진수
+		// 0,1,2,3,4,5,6,7,8,9,A(10),B(11),C(12),D(13),E(14),F(15)
+		int hex = 0xf;
+		System.out.println(hex);
 	}
 }
