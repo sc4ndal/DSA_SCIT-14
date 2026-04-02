@@ -1,5 +1,7 @@
 package chapter.chapter01_Data;
 
+import java.util.Scanner;
+
 public class C011_TextBlock {
 	
 	public static void main(String[] args) {
@@ -43,6 +45,17 @@ public class C011_TextBlock {
 				나이:%d
 				""".formatted(name,age);
 		System.out.println(message);
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("이름을 입력하세요:");
+		String myName = sc.nextLine();
+		System.out.print("나이를 입력하세요:");
+		int myAge = sc.nextInt();
+		String message2 = """
+				이름:%s
+				나이:%d
+				""".formatted(myName,myAge);
+		System.out.println(message2);
 	
 	}
 }
