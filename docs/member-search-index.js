@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"chapter.chapter00","c":"C001_Comment","l":"C001_Comment()","u":"%3Cinit%3E()"},{"p":"chapter.chapter00","c":"C001_Comment","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
