@@ -17,7 +17,7 @@ public class C016_Operator2 {
 		System.out.println("===복합 관계 연산자===");
 		
 		int num2 = 3;
-		num2+=3;
+		num2+=3; // num2 = num2+3
 		System.out.println("num2+=3="+num2);
 		num2-=3;
 		System.out.println("num2-=3="+num2);
