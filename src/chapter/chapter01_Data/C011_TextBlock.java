@@ -56,6 +56,13 @@ public class C011_TextBlock {
 				나이:%d
 				""".formatted(myName,myAge);
 		System.out.println(message2);
+		
+//		double a = 3.14;
+//		System.out.println(a);
+//		int b = (int) a;
+//		System.out.println(b);
+//		double c = (double) b;
+//		System.out.println(c);
 	
 	}
 }
