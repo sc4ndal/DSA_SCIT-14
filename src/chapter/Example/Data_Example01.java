@@ -9,7 +9,10 @@ public class Data_Example01 {
 		
 		String result = """
 				이름:%s
-				나이:%
-				""";
+				나이:%d
+				키:%.1f
+				성별:%c
+				""".formatted(name,age,height,sex);
+		System.out.println(result);
 	}
 }
