@@ -17,8 +17,16 @@ public class Oper_Example02 {
 		System.out.println("영어: "+eng);
 		System.out.println("수학: "+math);
 		
-		String result = (lan<40&&eng<40&&math<40) && ((double)(lan+eng+math)/3)>=60?
-						  "pass" : "false";
+		String result = lan>=40&&eng>=40&&math>=40 && (double)(lan+eng+math)/3>=60?
+						  "합격" : "불합격";
 		System.out.println(result);
+		
+//		double avg = (double) (lan+eng+math)/3;
+//		boolean avgCondition = avg>=60;
+//		boolean cutLine = lan>=40&&eng>=40&&math>=40;
+//
+//		boolean result2 = avgCondition&&cutLine;
+//
+//		System.out.println(result2);
 	}
 }
