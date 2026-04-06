@@ -13,7 +13,7 @@ public class Oper_Example05 {
 		System.out.print("세번째숫자 : ");
 		int c = sc.nextInt();
 		
-		int maxNum = a >= b && b >= c ?
+		int maxNum = a >= b && a >= c ?
 					a : b >= a && b >= c ?
 					b : c;
 		
