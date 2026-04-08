@@ -15,13 +15,13 @@ public class If_Example06 {
 		double bmi = kg/(cmcm*cmcm);
 		
 		if (bmi >= 25) {
-			System.out.printf("BMI 지수: " + bmi + "(비만)");
+			System.out.printf("BMI 지수: %.2f (비만)", bmi);
 		} else if (bmi >= 23) {
-			System.out.printf("BMI 지수: %d" + bmi + "(과체중)");
+			System.out.printf("BMI 지수: %.2f (과체중)", bmi);
 		} else if (bmi >= 18.5) {
-			System.out.printf("BMI 지수: %d" + bmi + "(정상)");
+			System.out.printf("BMI 지수: %.2f (정상)", bmi);
 		} else {
-			System.out.println("BMI 지수: "+bmi+"(저체중)");
+			System.out.printf("BMI 지수: %.2f (저체중)", bmi);
 		}
 	}
 }

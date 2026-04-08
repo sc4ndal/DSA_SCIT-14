@@ -11,10 +11,10 @@ public class Loop_Example04 {
 		}
 		System.out.println();
 		for (int i = 0; i < 5; i++) {
-			for (int j = 1; j < 5; j++) {
+			for (int j = 0; j < 5; j++) {
 				System.out.print(i+"\t");
 			}
-			System.out.println(i+"\t");
+			System.out.println();
 		}
 		System.out.println();
 		for (int i = 0; i < 5; i++) {
@@ -23,5 +23,6 @@ public class Loop_Example04 {
 			}
 			System.out.println();
 		}
+		
 	}
 }
