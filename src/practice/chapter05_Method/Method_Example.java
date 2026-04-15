@@ -44,6 +44,7 @@ public class Method_Example {
                     3. 잔액조회
                     4. 종료
                     """);
+            System.out.print("선택 : ");
             int x = sc.nextInt();
             switch (x) {
                 case 1:
