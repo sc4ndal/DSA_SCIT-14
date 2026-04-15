@@ -19,5 +19,6 @@ public class C060_Array3 {
 		}
 		System.out.println();
 		System.out.println("배열 길이 : "+score.length);
+		
 	}
 }
