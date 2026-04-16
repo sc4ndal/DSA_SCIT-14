@@ -1,12 +1,13 @@
 package practice.chapter05_Method;
 
 import java.util.Scanner;
-class BankAcount{
-    int balance;
 
-    BankAcount() {
-        this.balance=0;
-    }
+class BankAcount{
+    static int balance = 0;
+
+//    BankAcount() {
+//        this.balance=0;
+//    }
     void deposit(int money){
         balance += money;
         System.out.println("입금 완료");

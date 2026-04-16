@@ -12,5 +12,7 @@ public class ex2 {
 		System.out.println();
 		
 		System.out.println("C039클래스_methodB 반환값 : "+C039_Method2.methodB());
+		System.out.println("종료");
+		System.exit(0);
 	}
 }
