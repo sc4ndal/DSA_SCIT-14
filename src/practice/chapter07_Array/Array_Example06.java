@@ -7,29 +7,36 @@ public class Array_Example06 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		
 		System.out.print("받을 로또 게임의 개수를 입력해주세요: ");
-		int a = sc.nextInt();
-		int[][] num = new int[a][6];
+		int lotto = sc.nextInt();
+		int count = 1;
+		System.out.println("==============================");
 		
-		String result = "";
-		for (int i = 1; i <= a; i++) {
-			for (int j = 0; j < 6; j++) {
-				int x = (int) (Math.random() * 45+1);
-				num[i-1][j] = x;
-				Arrays.sort(num[i-1]);
+		while (count <= lotto) {
+			int[] lottos = new int[6];
+			// 난수 6개 배열에 저장
+			for (int i = 0; i < lottos.length; i++) {
+				lottos[i] = (int) (Math.random() * 45 + 1);
+				
+				// 중복제거
+				for (int j = 0; j < i; j++) {
+					if (lottos[i] == lottos[j]) {
+						i--;
+						break;
+					}
+				}
+				
 			}
-//			num[i-1][j] = Arrays.toString(num[i-1]);
+			
+			Arrays.sort(lottos);
+			
+			// 출력
+			System.out.printf("*[%2d ]번 : ", count);
+			for (int i = 0; i < lottos.length; i++) {
+				System.out.printf("%2d ", lottos[i]);
+			}
+			System.out.println();
+			count++;
 		}
-//		for (int[] i : num) {
-//			for (int j : i) {
-//				System.out.print(j+" ");
-//			}
-//		}
-		System.out.println("""
-				===========================
-				%s
-				""".formatted(result));
-		
 	}
 }
