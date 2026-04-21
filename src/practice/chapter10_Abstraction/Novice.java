@@ -8,15 +8,21 @@ public class Novice {
 	private int str; // 힘 스탯
 	private int dex; // 민첩 스탯
 	private int intel; // 지능 스탯
-	private double luck; // 운 스탯
 	
 	// 명시적생성자
-	public Novice(String name, int str, int dex, int intel, double luck) {
+	public Novice(String name, int str, int dex, int intel) {
 		this.name = name;
 		this.str = str;
 		this.dex = dex;
 		this.intel = intel;
-		this.luck = luck;
+
+		System.out.println("""
+				캐릭터 생성 완료!
+				이름 : %s
+				str : %d
+				dex : %d
+				int : %d
+				""".formatted(name,str,dex,intel));
 	}
 	
 	// 멤버 메서드
@@ -32,5 +38,4 @@ public class Novice {
 	public int getStr() {return str;}
 	public int getDex() {return dex;}
 	public int getIntel() {return intel;}
-	public double getLuck() {return luck;}
 }

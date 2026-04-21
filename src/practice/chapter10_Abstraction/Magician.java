@@ -1,27 +1,24 @@
 package practice.chapter10_Abstraction;
 
-public class Knight extends Novice implements Skill {
-	
+public class Magician extends Novice implements Skill {
 	// 명시적생성자
 	
-	public Knight(String name, int str, int dex, int intel) {
+	public Magician(String name, int str, int dex, int intel) {
 		super(name, str, dex, intel);
 	}
 	
 	@Override
 	public void attack() {
-		System.out.println("배쉬 공격");
+		System.out.println("지팡이 공격");
 	}
 	
 	@Override
 	public String getJob() {
-		return "기사";
+		return "마법사";
 	}
 	
 	@Override
 	public void skill() {
-		System.out.println("스턴 어택");
+		System.out.println("플레임볼");
 	}
-	
-
 }

@@ -2,7 +2,7 @@ package practice.chapter10_Abstraction;
 
 import java.util.Scanner;
 
-public class GameMain {
+public class GameMain extends GameMain_Method{
 	public static void main(String[] args) {
 		
 		/*
@@ -36,12 +36,12 @@ public class GameMain {
 		 * 8. 위 기능은 사용자가 종료를 선택할 때까지 반복 실행되도록 한다.
 		 */
 		
-		Scanner scan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		GameMain_Method gm = new GameMain_Method();
+		gm.printMenu();
+		String name = sc.nextLine();
 		Novice character = null;
 		int num = 0;
-		
-		GameMain_Method.printMenu();
 		
 	}
 }
