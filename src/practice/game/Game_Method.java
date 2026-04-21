@@ -8,7 +8,7 @@ public class Game_Method {
     public static void MainMenu() {
         while (true) {
             System.out.println("""
-                    === ABCDE_rpg ===
+                    === ABCDE_RPG ===
                     1. 캐릭터 생성
                     2. 캐릭터 정보
                     3. 전직하기
@@ -24,6 +24,7 @@ public class Game_Method {
                 case 1 -> {
                     System.out.print("닉네임 입력 : ");
                     String name = sc.next();
+                    System.out.println();
                     createCharacter(name);
                 }
                 case 2 -> charcterInfo();
@@ -73,11 +74,11 @@ public class Game_Method {
     }
     public static void changeJob() {
         System.out.print("""
-                === 직업 종류 ===
+                ==== 직업 종류 ====
                 1. 기사
                 2. 마법사
                 3. 도적
-                ===============
+                =================
                 
                 """);
         System.out.print("전직할 직업 번호 입력 : ");

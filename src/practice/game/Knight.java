@@ -3,6 +3,7 @@ package practice.game;
 public class Knight extends Novice implements Skill{
     public Knight(String name, int str, int dex, int intel) {
         super(name, str, dex, intel);
+        System.out.println("기사로 전직!\n");
     }
 
     public void attack() {
