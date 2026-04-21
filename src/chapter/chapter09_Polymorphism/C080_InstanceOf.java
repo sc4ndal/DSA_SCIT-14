@@ -16,6 +16,7 @@ class Dog extends Animal {
 	void move() {
 		System.out.println("개가 움직입니다.");
 	}
+
 }
 
 class Dove extends Animal {
@@ -25,6 +26,7 @@ class Dove extends Animal {
 	void move() {
 		System.out.println("새가 날아갑니다.");
 	}
+	
 }
 public class C080_InstanceOf {
 	public static void main(String[] args) {

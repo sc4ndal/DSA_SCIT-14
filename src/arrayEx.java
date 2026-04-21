@@ -1,6 +1,5 @@
-import java.awt.print.Book;
 
-public class ex4 {
+public class arrayEx {
 	
 	public static void main(String[] args) {
 		String s1 = "abc";

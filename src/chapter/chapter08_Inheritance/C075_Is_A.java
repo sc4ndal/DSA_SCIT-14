@@ -9,12 +9,19 @@ class Animal {
 	void move() {
 		System.out.println("동물이 움직입니다.");
 	}
+	void cring() {
+	
+	}
 }
 
 class Person extends Animal {
 	@Override
 	void move() {
 		System.out.println("사람이 걷습니다.");
+	}
+	@Override
+	void cring() {
+		System.out.println("따흑");
 	}
 }
 
@@ -24,6 +31,10 @@ public class C075_Is_A {
 		Person h = new Person(); // 사람은 사람이다.
 		Animal ah = new Person(); // 사람은 동물이다.
 //		Person ha = new Animal(); // 동물은 사람이다. -> 오류
+		
+		a.cring();
+		h.cring();
+		ah.cring();
 		
 		a.move();
 		h.move();

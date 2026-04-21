@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 class User {
 	static int totalUser;
 	String id;
@@ -27,7 +23,7 @@ class User {
 	}
 }
 
-public class ex3 {
+public class instanceEx {
 	public static void main(String[] args) {
 
 		User user1 = new User("scit1", "1111");
