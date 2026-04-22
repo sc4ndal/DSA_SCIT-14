@@ -3,7 +3,6 @@ package practice.game;
 public class Thief extends Novice implements Skill{
     public Thief(String name, int str, int dex, int intel) {
         super(name, str, dex, intel);
-        System.out.println("도적으로 전직!\n");
     }
 
     public void attack() {
