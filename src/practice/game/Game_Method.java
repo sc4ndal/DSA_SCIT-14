@@ -62,6 +62,7 @@ public class Game_Method {
         }
     }
     // 캐릭터 생성 메서드
+    
     public static Novice createCharacter(String name) {
         int str=0, dex=0, intel=0, sum=0;
         while (true) {

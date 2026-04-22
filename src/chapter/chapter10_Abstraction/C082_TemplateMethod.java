@@ -3,6 +3,7 @@ package chapter.chapter10_Abstraction;
 abstract class Car {
 	public abstract void drive();
 	public abstract void stop();
+	static int a;
 	
 	private void turnOn() {
 		System.out.println("시동을 켭니다.");
