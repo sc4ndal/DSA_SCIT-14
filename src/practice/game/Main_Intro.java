@@ -7,12 +7,12 @@ public class Main_Intro {
         Scanner sc = new Scanner(System.in);
         
         System.out.print("""
-                =================
-                
-                    WELCOME TO
-                    ABCDE_RPG👾
-                
-                =================
+                |=================|
+                |                 |
+                |    WELCOME TO   |
+                |    ABCDE_RPG👾  |
+                |                 |
+                |=================|
                 
                 닉네임을 입력해주세요:""");
         String name = sc.nextLine();        // 닉네임 받기
