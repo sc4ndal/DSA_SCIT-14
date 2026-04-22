@@ -3,7 +3,7 @@ package practice.game;
 import java.util.Scanner;
 
 public class Game_Method {
-    private static Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     static Novice novice = null;
     static int level = 1;
     public static void MainMenu() {
@@ -84,7 +84,7 @@ public class Game_Method {
             System.out.println();
             // y 입력시 재실행
             if (yesOrNo.equals("y")) {
-                sum=0;
+                continue;
             }
             // n 입력시 캐릭터 생성
             else if (yesOrNo.equals("n")) {
