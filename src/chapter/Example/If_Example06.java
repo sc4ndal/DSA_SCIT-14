@@ -10,9 +10,9 @@ public class If_Example06 {
 		double cm = sc.nextDouble();
 		System.out.print("몸무게(kg): ");
 		double kg = sc.nextDouble();
-		double cmcm = cm*0.01;
+		double m = cm*0.01;
 		
-		double bmi = kg/(cmcm*cmcm);
+		double bmi = kg/(m*m);
 		
 		if (bmi >= 25) {
 			System.out.printf("BMI 지수: %.2f (비만)", bmi);

@@ -54,6 +54,7 @@ public class Object_Example02 {
 	}
 	static public void compareProduct(Product p1, Product p2) {
 		System.out.println(p1+", "+p2+"\n상품 비교");
+		
 		if (p1.equals(p2)) {
 			System.out.println("두 상품은 같은 상품입니다.");
 		} else {
