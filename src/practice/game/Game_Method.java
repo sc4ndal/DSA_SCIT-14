@@ -36,10 +36,12 @@ public class Game_Method {
             switch (selectMenu){
                 // 캐릭터 재생성
                 case 1 -> {
+                    
                     System.out.print("닉네임 입력 : ");
                     String name = sc.next();
                     System.out.println();
                     createCharacter(name);
+                    
                 }
                 // 전직
                 case 2 -> changeJob();
