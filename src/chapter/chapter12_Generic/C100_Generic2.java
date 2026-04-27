@@ -10,6 +10,11 @@ class Box<T> {
 	public T getItem() {
 		return item;
 	}
+	
+	public int add(T i) {
+		int it = (int) i;
+		return it += 2;
+	}
 }
 
 class Coke {
@@ -24,12 +29,20 @@ public class C100_Generic2 {
 		
 		// String
 		Box<String> stringBox = new Box<>("안녕하세요");
+		
+		System.out.println(stringBox.getItem());
+		
 		String str = stringBox.getItem();
 		System.out.println(str);
+		
+		
 		// Int
 		Box<Integer> integerBox = new Box<>(777);
 		int num = integerBox.getItem();
 		System.out.println(num);
+		
+		int i = integerBox.add(3);
+		System.out.println(i);
 		
 		// Coke 전용 박스
 		Box<Coke> box3 = new Box<>(new Coke());
