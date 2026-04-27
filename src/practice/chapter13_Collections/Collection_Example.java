@@ -18,7 +18,7 @@ public class Collection_Example {
 		int num = sc.nextInt();
 		System.out.println("===============================================================");
 		while (count <= num) {
-			while (lottos.size() < count) {
+			while (lottos.size() < LOTTO_COUNT) {
 				int ranNum = ran.nextInt(MAX_NUMBER) + 1;
 				lottos.add(ranNum);
 			}
@@ -32,7 +32,6 @@ public class Collection_Example {
 				System.out.printf("%2d ", i);
 			}
 			System.out.println();
-			count++;
 		}
 	}
 	
