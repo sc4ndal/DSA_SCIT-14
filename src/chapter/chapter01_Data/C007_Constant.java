@@ -9,7 +9,7 @@ public class C007_Constant {
 		1. 한번 값이 저장되면 변경할 수 없는 *변수*
 		2. final 선언
 		3. 일반 변수와 구분하기 위해 대부분 대문자_ 로 작성
-		ex. PI, MAX_SIZE, TAX,RATE
+		ex.ex. PI, MAX_SIZE, TAX,RATE
 		 */
 		
 		final double a = 3.14;

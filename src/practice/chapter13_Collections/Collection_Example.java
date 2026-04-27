@@ -11,28 +11,30 @@ public class Collection_Example {
 		
 		Scanner sc = new Scanner(System.in);
 		Random ran = new Random();
+
 		TreeSet<Integer> lottos = new TreeSet<>();
 		int count = 1;
 		
 		System.out.print("갯수 입력 : ");
 		int num = sc.nextInt();
+
 		System.out.println("===============================================================");
 		while (count <= num) {
 			while (lottos.size() < LOTTO_COUNT) {
 				int ranNum = ran.nextInt(MAX_NUMBER) + 1;
 				lottos.add(ranNum);
 			}
-//			for (int i = 0; i < num; i++) {
-//				for (int j = 0; j < LOTTO_COUNT; j++) {
-//
-//				}
-//			}
 			System.out.printf("*오늘의 행운 번호 [%2d ] : ", count);
 			for (int i : lottos) {
 				System.out.printf("%2d ", i);
 			}
 			System.out.println();
+			count++;
+			lottos.clear();
+
 		}
+		System.out.println("===============================================================");
+		sc.close();
 	}
 	
 }

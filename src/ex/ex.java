@@ -1,3 +1,5 @@
+package ex;
+
 class Box<T> {
 	private T item;
 	
