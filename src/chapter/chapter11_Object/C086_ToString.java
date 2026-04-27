@@ -7,7 +7,7 @@ package chapter.chapter11_Object;
 	
 	구조
 		클래스이름 @ 해시코드
-		ex. Human@5e91993f
+		ex.ex. Human@5e91993f
 		
 	* 필요에 따라 객체의 정보를 보기 쉽게 출력하기 위해
 	toString()를 오버라이딩해 사용한다.

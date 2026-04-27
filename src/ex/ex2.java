@@ -1,4 +1,4 @@
-import chapter.chapter05_Method.C039_Method2;
+package ex;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class ex2 {
 //		Scanner sc = new Scanner(System.in);
 //		System.out.print("환전할 금액 입력(엔) : ");
 //		int money = sc.nextInt();
-//		ex.resultPlus(money);
+//		ex.ex.resultPlus(money);
 //
 //		System.out.println();
 //
