@@ -60,7 +60,7 @@ public class User_method {
 		System.out.println("===================");
 		System.out.print("-> id 입력 :");
 		String id = sc.next();
-		boolean check = false;
+		//boolean check = false;
 		for (User u : userList) {
 			if (u.getId().equals(id)) {
 				System.out.print("-> pw 입력 :");
@@ -68,17 +68,18 @@ public class User_method {
 				if (u.getPw().equals(pw)) {
 					System.out.println("[조회 성공]");
 					System.out.println(u);
-					check = true;
-					break;
+					//check = true;
+					//break;
 				} else {
-					System.out.println("조회실패");
+					System.out.println("[조회실패] 비밀번호가 틀렸습니다.");
 					return;
 				}
 			}
 		}
-		if (check == false) {
-			System.out.println("조회실패");
-		}
+		System.out.println("[조회실패] 아이디가 틀렸습니다.")
+		//if (check == false) {
+		//	System.out.println("조회실패");
+		//}
 		
 	}
 	
