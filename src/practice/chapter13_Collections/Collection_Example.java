@@ -18,7 +18,7 @@ public class Collection_Example {
 		System.out.print("갯수 입력 : ");
 		int num = sc.nextInt();
 
-		System.out.println("===============================================================");
+		System.out.println("==========================================");
 		while (count <= num) {
 			while (lottos.size() < LOTTO_COUNT) {
 				int ranNum = ran.nextInt(MAX_NUMBER) + 1;
@@ -33,7 +33,7 @@ public class Collection_Example {
 			lottos.clear();
 
 		}
-		System.out.println("===============================================================");
+		System.out.println("==========================================");
 		sc.close();
 	}
 	
