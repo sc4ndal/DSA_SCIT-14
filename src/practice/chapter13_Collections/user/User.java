@@ -55,7 +55,7 @@ public class User implements Comparable<User>{
 	
 	@Override
 	public int compareTo(User u) {
-		int result = this.name.compareTo(u.name);
+		int result = this.name.compareTo(u.name)*-1;
 		return result;
 	}
 }
