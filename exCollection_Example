@@ -1,0 +1,41 @@
+public class Collection_Example {
+	
+	// 유지보수를 위한 상수 설정
+	private static final int LOTTO_COUNT = 6;
+	private static final int MAX_NUMBER = 45;
+	
+	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.print("받고 싶은 행운번호의 개수를 입력해주세요: ");
+		
+		// 숫자가 아닌 값이 들어올 경우를 대비한 간단한 예외 처리 (선택사항)
+		if (!scan.hasNextInt()) {
+			System.out.println("숫자만 입력 가능합니다.");
+			return;
+		}
+		
+		int num = scan.nextInt();
+		System.out.println("================================");
+		
+		for (int cnt = 1; cnt <= num; cnt++) {
+			// TreeSet: 중복 방지 + 자동 오름차순 정렬
+			TreeSet<Integer> ts = new TreeSet<>();
+			
+			// 6개가 채워질 때까지 무한 반복
+			while (ts.size() < LOTTO_COUNT) {
+				ts.add((int)(Math.random() * MAX_NUMBER + 1));
+			}
+			
+			// 결과 출력 (printf를 활용한 정렬)
+			System.out.printf(" *오늘의 행운번호[%2d]: ", cnt);
+			for (Integer number : ts) {
+				System.out.printf("%2d ", number);
+			}
+			System.out.println();
+		}
+		
+		System.out.println("================================");
+		scan.close(); // Scanner 자원 해제
+	}
+}
