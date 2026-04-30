@@ -76,7 +76,7 @@ public class User_method {
 				}
 			}
 		}
-		System.out.println("[조회실패] 아이디가 틀렸습니다.")
+		System.out.println("[조회실패] 아이디가 틀렸습니다.");
 		//if (check == false) {
 		//	System.out.println("조회실패");
 		//}

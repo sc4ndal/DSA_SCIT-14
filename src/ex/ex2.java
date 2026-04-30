@@ -9,15 +9,15 @@ public class ex2 {
 		
 		
 		// Iterator 사용법
-		List<User> users = new ArrayList<>();
-		Iterator<User> it = users.iterator();
-		
-		while (it.hasNext()) {
-  		User u = it.next();
-    	if (조건) {
-        	it.remove(); // 👉 users에서도 삭제됨
-    		}
-		}
+//		List<User> users = new ArrayList<>();
+//		Iterator<User> it = users.iterator();
+//
+//		while (it.hasNext()) {
+//  		User u = it.next();
+//    	if (조건) {
+//        	it.remove(); // 👉 users에서도 삭제됨
+//    		}
+//		}
 
 		
 //		int a = (int)((Math.random()*10)+1);
