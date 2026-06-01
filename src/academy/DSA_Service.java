@@ -57,6 +57,7 @@ public class DSA_Service {
 			System.out.println("학생정보가 없습니다.");
 			return;
 		}
+		
 		System.out.print("학번 입력 > ");
 		int stdNum = sc.nextInt();
 		boolean check = false;
@@ -99,11 +100,14 @@ public class DSA_Service {
 		for (Student s : studentList) {
 			if (s.getName().equals(name)) {
 				System.out.println(s);
-				return;
 			}
 		}
-		System.out.printf("%s 학생의 정보가 없습니다.", name);
-		System.out.println();
+		for (Student s : studentList) {
+			if (!(s.getName().equals(name))) {
+				System.out.printf("%s 학생의 정보가 없습니다.", name);
+				System.out.println();
+			}
+		}
 	}
 	
 	public void selectAll() {

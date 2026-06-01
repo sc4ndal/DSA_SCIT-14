@@ -59,7 +59,6 @@ public class Student implements Comparable<Student>{
 		this.avg = (sum/3);
 	}
 	
-	
 	@Override
 	public boolean equals(Object o) {
 		if (o == null || getClass() != o.getClass()) return false;
