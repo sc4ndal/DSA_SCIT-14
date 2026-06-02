@@ -61,6 +61,7 @@ public class DSA_Service {
 		System.out.print("학번 입력 > ");
 		int stdNum = sc.nextInt();
 		boolean check = false;
+		
 		for (Student s : studentList) {
 			if (stdNum == s.getStdNum()) {
 				do {
@@ -97,16 +98,17 @@ public class DSA_Service {
 		System.out.print("이름 입력 > ");
 		String name = sc.next();
 		
+		boolean found = false;
+		
 		for (Student s : studentList) {
 			if (s.getName().equals(name)) {
 				System.out.println(s);
+				found = true;
 			}
 		}
-		for (Student s : studentList) {
-			if (!(s.getName().equals(name))) {
-				System.out.printf("%s 학생의 정보가 없습니다.", name);
-				System.out.println();
-			}
+		
+		if (!found) {
+			System.out.printf("%s 학생의 정보가 없습니다.%n", name);
 		}
 	}
 	
@@ -128,6 +130,7 @@ public class DSA_Service {
 		for (Student s : studentList) {
 			System.out.println(s);
 		}
+		
 	}
 	
 	public void selectRank() {

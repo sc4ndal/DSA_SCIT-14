@@ -22,7 +22,7 @@ public class Student implements Comparable<Student>{
 		this.web = web;
 		serialNum++;
 		this.stdNum = serialNum;
-		sum = java+database+web;
+		this.sum = java+database+web;
 		this.avg = ((double)sum/3);
 	}
 	
