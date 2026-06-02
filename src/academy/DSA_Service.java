@@ -30,15 +30,25 @@ public class DSA_Service {
 		System.out.print("이름 입력 > ");
 		String name = sc.next();
 		boolean check = false;
+		int java = 0;
+		int db = 0;
+		int web = 0;
 		do {
+			try {
+			
 			System.out.print("*Java : ");
-			int java = sc.nextInt();
+			java = sc.nextInt();
 			
 			System.out.print("*DB : ");
-			int db = sc.nextInt();
+			db = sc.nextInt();
 			
 			System.out.print("*WEB : ");
-			int web = sc.nextInt();
+			web = sc.nextInt();
+			
+			} catch (Exception e) {
+				throw new RuntimeException("점수는 숫자만 입력해주세요.");
+				
+			}
 			if (!(0 <= java && java <= 100) || !(0 <= db && db <= 100) || !(0 <= web && web <= 100)) {
 				System.out.println("점수는 0~100 점 이내로 입력하세요.");
 			} else {
