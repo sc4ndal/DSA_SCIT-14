@@ -14,12 +14,21 @@ class ScoreException extends Exception {
 }
 
 public class C126_CustomException {
+		static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 		
+		while (true) {
+		ingF();
+		
+		}
+		
+//		sc.close();
+	}
+	public static void ingF() {
 		System.out.print("점수 입력 > ");
 		int score = sc.nextInt();
 //		checkScore(score);
+		
 		
 		try {
 			checkScore(score);
@@ -29,10 +38,8 @@ public class C126_CustomException {
 			System.out.println(s.getMessage());
 		}
 		System.out.println("프로그램 종료");
-		sc.close();
 		
 	}
-	
 	// 점수 검사 메서드
 //	public static void checkScore(int score) {
 //		if (score < 0 || score > 100) {

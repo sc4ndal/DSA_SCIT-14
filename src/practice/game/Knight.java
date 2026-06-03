@@ -11,6 +11,7 @@ public class Knight extends Novice implements Skill{
     public String getJob() {
         return "기사";
     }
+    
     @Override
     public void skill() {
         System.out.println("방패치기\n");
