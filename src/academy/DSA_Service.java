@@ -128,7 +128,9 @@ public class DSA_Service {
 			System.out.println("학생정보가 없습니다.");
 			return;
 		}
-		Collections.sort(studentList, new Comparator<Student>() {
+		ArrayList<Student> copystudentlist = new ArrayList<>();
+		
+		copystudentlist.sort(new Comparator<Student>() {
 			@Override
 			public int compare(Student s1, Student s2) {
 				if (s1.getName().compareTo(s2.getName()) == 0) {
@@ -137,7 +139,22 @@ public class DSA_Service {
 				return s1.getName().compareTo(s2.getName());
 			}
 		});
-		for (Student s : studentList) {
+		
+//		Collections.sort(studentList, new Comparator<Student>() {
+//			@Override
+//			public int compare(Student s1, Student s2) {
+//				if (s1.getName().compareTo(s2.getName()) == 0) {
+//					return s2.getStdNum() - s1.getStdNum();
+//				}
+//				return s1.getName().compareTo(s2.getName());
+//			}
+//		});
+		
+//		for (Student s : studentList) {
+//			System.out.println(s);
+//		}
+		
+		for (Student s : copystudentlist) {
 			System.out.println(s);
 		}
 		

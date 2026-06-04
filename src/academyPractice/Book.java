@@ -1,5 +1,8 @@
 package academyPractice;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Book implements Comparable<Book> {
@@ -11,13 +14,14 @@ public class Book implements Comparable<Book> {
 	private String author;
 	private int price;
 	private int publicationDate;
+	private int today = Integer.parseInt(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")));
 	
-	public Book(String title, String author, int price, int date) {
+	public Book(String title, String author, int price) {
 		this.title = title;
 		this.author = author;
 		this.price = price;
 		this.serialNum = ++num;
-		this.publicationDate = date;
+		this.publicationDate = this.today;
 	}
 	
 	public void editPrice(int price){
@@ -60,7 +64,7 @@ public class Book implements Comparable<Book> {
 	
 	@Override
 	public String toString() {
-		return String.format("[%d] | 책번호:%s | 책제목:%s | 작가명:%s | 가격:%s | 출판일 %s", libraryName, serialNum, title, author, price, publicationDate);
+		return String.format("[%s] | 책번호:%d | 책제목:%s | 작가명:%s | 가격:%d | 출판일 %d", libraryName, serialNum, title, author, price, publicationDate);
 	}
 	
 	@Override

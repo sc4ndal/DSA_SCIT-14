@@ -16,8 +16,7 @@ public class Library_Main {
 				case 2 -> ls.serachTitle();
 				case 3 -> ls.searchAuthor();
 				case 4 -> ls.searchPrice();
-				case 5 -> ls.searchDate();
-				case 6 -> ls.searchAll();
+				case 5 -> ls.searchAll();
 				case 0 -> System.exit(0);
 				default -> System.out.println("**다시 선택해주세요**");
 			}

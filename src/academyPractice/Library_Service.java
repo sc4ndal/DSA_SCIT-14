@@ -5,39 +5,39 @@ import java.util.Scanner;
 
 public class Library_Service {
 	private static ArrayList<Book> booksList;
-	private static Scanner sc = new Scanner(System.in);
+	private static Scanner sc;
+	
+	public Library_Service() {
+		booksList = new ArrayList<>();
+		sc = new Scanner(System.in);
+	}
 	
 	public void mainMenu() {
 		System.out.println("""
-				%s에 오신 것을 환영합니다.
+				DSA 서점에 오신 것을 환영합니다.
 				1. 도서등록
 				2. 책제목으로 검색
 				3. 작가이름으로 검색
 				4. 가격으로 검색(~ 금액 까지)
-				5. 출판일로 검색(입력 날짜 이후 ~)
-				6. 전체 검색
-				0. 종료
-				선택 >
-				""");
+				5. 전체 검색
+				0. 종료""");
+		System.out.print("선택 > ");
 	}
 	
 	public void insertBook() {
 		System.out.println("[도서등록]");
-			
-			System.out.print("제목 입력 : ");
-			String title = sc.next();
-			
-			System.out.print("작가명 입력 : ");
-			String author = sc.next();
-			
-			System.out.print("가격 입력 : ");
-			int price = sc.nextInt();
-			
-			System.out.println("출판일 입력 : ");
-			int date = sc.nextInt();
-			
-			Book book = new Book(title,author,price,date);
-			booksList.add(book);
+		
+		System.out.print("제목 입력 : ");
+		String title = sc.next();
+		
+		System.out.print("작가명 입력 : ");
+		String author = sc.next();
+		
+		System.out.print("가격 입력 : ");
+		int price = sc.nextInt();
+		
+		Book book = new Book(title, author, price);
+		booksList.add(book);
 		
 	}
 	
