@@ -9,7 +9,7 @@ import java.util.TreeSet;
 	[TreeSet]
 	특징
 		1. 중복 데이터 저장 가능
-		2. 저장될 때 자동 절렬
+		2. 저장될 때 자동 정렬
 		3. 내부적으로 이진트리 구조 사용
  */
 public class C113_TreeSet {
