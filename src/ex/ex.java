@@ -38,4 +38,21 @@ public class ex {
 			System.out.print(element+" ");
 		}
 	}
+hashmap 데이터 비교
+/*
+boolean exists = false;
+
+for (Reservate r : reservateMap.values()) {
+    if (r.getName().equals(name)
+            && r.getDate().equals(date)
+            && r.getTime() == time) {
+        exists = true;
+        break;
+    }
+}
+
+if (exists) {
+    System.out.println("이미 존재하는 예약입니다.");
+}
+*/
 }
