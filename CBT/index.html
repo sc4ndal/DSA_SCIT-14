@@ -170,6 +170,7 @@
   .qa .ai .cor{display:inline-block;color:#0d47a1;font-weight:700;max-width:calc(100% - 72px)}
   .qa .ai .cor pre{margin:2px 0;font-weight:400;color:#1c1c1c}
   .qa .exp{margin:8px 0 0}
+  .note2{font-size:.88em;color:#556;border-top:1px dashed #c4ccd7;padding-top:6px;margin-top:10px!important}
   .path{font-family:Consolas,monospace;color:#556;font-size:.88em;margin:4px 0}
   pre.code{counter-reset:ln;padding:8px 0;background:#f8f9fb}
   pre.code .cl{display:block;white-space:pre;tab-size:4;padding-right:12px}
@@ -233,6 +234,7 @@
         <label><input type="radio" name="smode" value="exam" checked> 시험 모드 (제출 후 채점)</label>
         <label><input type="radio" name="smode" value="study"> 학습 모드 (문제마다 [정답 확인])</label>
       </div>
+      <div class="row"><b>문제 순서</b><label><input type="checkbox" id="sShuf" checked> 파트 안에서 문제 순서 섞기 (A→B→C→D→E 파트 순서는 유지)</label></div>
       <div class="row"><b>제한 시간</b><input type="number" id="sMin" min="0" max="600" value="60" style="width:80px"> 분 <span style="color:#666;font-size:.88em">(0 = 무제한 · 연습용 설정, 실제 시험 시간과 무관)</span></div>
       <div class="notice"><b>유의사항</b>
         <ul>

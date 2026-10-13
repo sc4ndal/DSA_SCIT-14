@@ -94,7 +94,14 @@ const Q=[
 <tr><td>5</td><td>정하늘</td><td>여성</td><td>30</td><td>2026-10-03 08:00</td></tr>
 <tr><td>6</td><td>강태호</td><td>남성</td><td>31</td><td>2026-10-03 09:00</td></tr></table>
 <pre><code>Sort.by(Sort.Order.desc("gender"), Sort.Order.asc("age"), Sort.Order.desc("completionTime"))</code></pre>
-<p>(1) 기준 코드의 <code>selectAll()</code>이 반환하는 목록의 순서대로 이름을 쓰시오.<br>(2) result.html의 <code>&lt;h2&gt;</code> 영역에 출력되는 내용을 쓰시오.<br>※ 문자열 정렬은 가나다순이 오름차순이다.</p>`,
+<p>(1) 기준 코드의 <code>selectAll()</code>이 반환하는 목록의 순서대로 이름을 쓰시오.<br>(2) result.html의 <code>&lt;h2&gt;</code> 영역에 출력되는 내용을 쓰시오.<br>※ 문자열 정렬은 가나다순이 오름차순이다.</p>
+<p class="note2">※ 참고 — result.html 일부 (12~17행)</p>
+<pre><code>&lt;h2&gt;
+    응답자(
+    &lt;span th:text="| 여 &#36;{genderCnt['여성'] ?: 0}|" class="female"&gt;0&lt;/span&gt;
+    &lt;span th:text="| 남 &#36;{genderCnt['남성'] ?: 0}|" class="male"&gt;0&lt;/span&gt;
+    )
+&lt;/h2&gt;</code></pre>`,
  items:[S('(1)','최유진 → 정하늘 → 이서연 → 박지훈 → 김민수 → 강태호','최유진정하늘이서연박지훈김민수강태호'),T('(2)','응답자( 여 3 남 3 )',{has:['여3','남3']})],
  exp:'gender 내림차순(가나다 \'남성\'<\'여성\' → 내림차순이면 여성 먼저) → 여성은 나이 오름차순(최유진 22, 30살끼리는 작성 시간 내림차순: 정하늘 10-03, 이서연 10-01) → 남성은 25살끼리 작성 시간 내림차순(박지훈, 김민수) 후 강태호 31.'},
 
@@ -102,7 +109,15 @@ const Q=[
 <p>Service의 <code>count()</code> 메서드와 result.html의 <code>&lt;h2&gt;</code>에 대한 질문이다.</p>
 <p>(1) 성별이 순서대로 [여성, 남성, 여성, 여성, 남성]인 목록을 넣었을 때 반환되는 Map의 내용을 쓰시오.<br>
 (2) 저장된 설문이 여성 2건뿐일 때 <code>&lt;h2&gt;</code>에 출력되는 내용을 쓰시오.<br>
-(3) 저장된 설문이 하나도 없을 때 <code>&lt;h2&gt;</code>에 출력되는 내용을 쓰시오.</p>`,
+(3) 저장된 설문이 하나도 없을 때 <code>&lt;h2&gt;</code>에 출력되는 내용을 쓰시오.</p>
+<p class="note2">※ 참고 — result.html 일부 (12~17행)</p>
+<pre><code>&lt;h2&gt;
+    응답자(
+    &lt;span th:text="| 여 &#36;{genderCnt['여성'] ?: 0}|" class="female"&gt;0&lt;/span&gt;
+    &lt;span th:text="| 남 &#36;{genderCnt['남성'] ?: 0}|" class="male"&gt;0&lt;/span&gt;
+    )
+&lt;/h2&gt;</code></pre>
+[[snip:c7:69-92:PerfumeService의 count() 메서드]]`,
  items:[T('(1)','{여성=3, 남성=2}',{has:['여성=3','남성=2']}),T('(2)','응답자( 여 2 남 0 )',{has:['여2','남0']}),T('(3)','응답자( 여 0 남 0 )',{has:['여0','남0']})],
  exp:'result.html: <code>&#36;{genderCnt[\'여성\'] ?: 0}</code> — 키가 없으면(null) 0.'},
 
@@ -112,7 +127,9 @@ const Q=[
 <tr><td>(1)</td><td>이름: 홍길동 / 성별: 선택 안 함 / 나이: 비움 / 나머지 비움</td></tr>
 <tr><td>(2)</td><td>이름: 공백 3칸 / 나머지 모두 올바르게 입력</td></tr>
 <tr><td>(3)</td><td>나이: -5 / 나머지 모두 올바르게 입력</td></tr>
-<tr><td>(4)</td><td>이름·성별·나이·향기 올바르게 입력, 사용 빈도는 건드리지 않음, 브랜드 비움</td></tr></table>`,
+<tr><td>(4)</td><td>이름·성별·나이·향기 올바르게 입력, 사용 빈도는 건드리지 않음, 브랜드 비움</td></tr></table>
+[[snip:c11:6-63:main.js의 유효성 검사]]
+[[snip:c9:44-64:main.html의 사용 빈도 선택]]`,
  items:[T('(1)','"성별을 선택하세요."',{has:['성별']}),T('(2)','"이름을 입력하세요."',{has:['이름']}),T('(3)','"올바른 나이를 입력하세요."',{has:['나이']}),T('(4)','"선호하는 향수 브랜드를 입력하세요."',{has:['브랜드']})],
  exp:'검사 순서: 이름 → 성별 → 나이 → 향기 → 사용 빈도 → 브랜드 → 예산. 먼저 걸린 항목 하나만 alert 후 return. 사용 빈도 라디오는 "사용하지 않음"이 checked 기본값이라 (4)에서 통과한다.'},
 
@@ -124,7 +141,9 @@ const Q=[
 
 // result.js
 let no = event.currentTarget.____②____.no;</code></pre>
-<p>(2) 확인창에서 [취소]를 누르면 서버로 요청이 가는지 쓰시오.<br>(3) [확인]을 누르면 서버로 가는 요청의 HTTP 메서드와 URL을 쓰시오.<br>(4) 삭제를 마친 뒤 브라우저가 다시 요청하는 URL을 쓰시오.</p>`,
+<p>(2) 확인창에서 [취소]를 누르면 서버로 요청이 가는지 쓰시오.<br>(3) [확인]을 누르면 서버로 가는 요청의 HTTP 메서드와 URL을 쓰시오.<br>(4) 삭제를 마친 뒤 브라우저가 다시 요청하는 URL을 쓰시오.</p>
+[[snip:c12:6-21:result.js]]
+[[snip:c8:61-70:PerfumeController의 삭제 메서드]]`,
  items:[T('(1) ①','data-no',{ans:['data-no','th:data-no']}),T('(1) ②','dataset',{ans:['dataset']}),C('(2)',['간다','안 간다'],1),T('(3)','POST /delete/5',{has:['post','/delete/5']}),T('(4)','/result  (GET, redirect:/result)',{has:['/result']})],
  exp:'confirm()이 false면 if 블록이 실행되지 않아 요청이 가지 않는다. 확인 시 JS가 가상 form을 만들어 POST 제출.'},
 
@@ -173,13 +192,15 @@ for method parameter type Integer is not present</code></pre>
 <p>main.html의 선호 향 선택 부분을 다음과 같이 작성했다.</p>
 <pre><code>&lt;select id="favoriteScent" name="favorite_scent"&gt;</code></pre>
 <p>[증상] 설문을 제출하면 저장은 되지만, DB를 확인하면 favorite_scent 컬럼만 NULL이다.</p>
-<p>(1) 요청 파라미터 값이 DTO에 들어가려면 <code>name</code> 속성 값이 무엇과 같아야 하는지 쓰시오. (2) 위 코드를 고쳐 쓰시오.</p>`,
+<p>(1) 요청 파라미터 값이 DTO에 들어가려면 <code>name</code> 속성 값이 무엇과 같아야 하는지 쓰시오. (2) 위 코드를 고쳐 쓰시오.</p>
+[[snip:c5:14-25:PerfumeDTO]]`,
  items:[T('(1)','DTO의 필드 이름 (favoriteScent)',{any:['favoritescent','필드','dto']}),A('(2)','<select id="favoriteScent" name="favoriteScent">',{has:['name="favoritescent"']})],exp:'폼 name은 DTO 필드명(camelCase) 그대로. DB 컬럼명(snake_case)이 아니다.'},
 
 {id:'C5',p:'C',title:'타입 변환 실패(400)',body:`
 <p>main.js가 동작하지 않는 상황(예: JS 파일 연결 누락)에서 다른 항목은 모두 입력하고 나이만 비운 채 설문을 제출했다.</p>
 <p>[증상] 400 Bad Request 오류 화면이 나타나고, 로그에 age 필드의 typeMismatch(타입 변환 실패) 메시지가 남는다.</p>
-<p>(1) <code>PerfumeDTO</code>의 <code>age</code> 필드 타입을 쓰고, 빈 값이 오면 왜 오류가 나는지 한 줄로 쓰시오. (2) 빈 값이 null로 들어와 오류가 나지 않게 하려면 <code>age</code>의 타입을 무엇으로 바꾸면 되는지 쓰시오.</p>`,
+<p>(1) <code>PerfumeDTO</code>의 <code>age</code> 필드 타입을 쓰고, 빈 값이 오면 왜 오류가 나는지 한 줄로 쓰시오. (2) 빈 값이 null로 들어와 오류가 나지 않게 하려면 <code>age</code>의 타입을 무엇으로 바꾸면 되는지 쓰시오.</p>
+[[snip:c5:14-25:PerfumeDTO]]`,
  items:[T('(1) 타입','int',{ans:['int']}),T('(1) 이유','int는 null을 가질 수 없어 빈 값("")을 변환하지 못한다',{any:['null','변환','숫자']}),T('(2)','Integer',{ans:['integer']})],exp:''},
 
 {id:'C6',p:'C',title:'예외 처리',body:`
@@ -205,7 +226,8 @@ public String survey(PerfumeDTO perfume) {
     // ... (생략)
 }</code></pre>
 <p>[증상] [설문 제출]을 누르면 <code>Method Not Allowed, status=405</code> 오류 화면이 나타난다.</p>
-<p>(1) main.html의 폼이 보내는 HTTP 메서드와 위 코드가 받는 HTTP 메서드를 각각 쓰고, 첫 줄을 고쳐 쓰시오. (2) 404 오류와 405 오류의 차이를 한 줄로 쓰시오.</p>`,
+<p>(1) main.html의 폼이 보내는 HTTP 메서드와 위 코드가 받는 HTTP 메서드를 각각 쓰고, 첫 줄을 고쳐 쓰시오. (2) 404 오류와 405 오류의 차이를 한 줄로 쓰시오.</p>
+[[snip:c9:12-12:main.html의 폼 태그]]`,
  items:[T('(1) 폼이 보내는','POST',{ans:['post']}),T('(1) 코드가 받는','GET',{ans:['get']}),T('(1) 고친 첫 줄','@PostMapping("/survey")',{has:['@postmapping("/survey")']}),
   T('(2)','404: URL에 연결된 처리기가 없음 / 405: URL은 있으나 HTTP 메서드가 맞지 않음',{any:['메서드','method']})],exp:''},
 
@@ -214,7 +236,8 @@ public String survey(PerfumeDTO perfume) {
 <pre><code>&lt;option value="남자"&gt;남성&lt;/option&gt;
 &lt;option value="여자"&gt;여성&lt;/option&gt;</code></pre>
 <p>[증상] 설문을 제출하면 메인 화면으로 돌아오지만 저장되지 않는다. 로그에 <code>Check constraint 'perfume_chk_1' is violated.</code>가 남는다.</p>
-<p>(1) 남성을 선택했을 때 서버로 전송되는 gender 값을 쓰시오. (2) perfume 테이블의 gender 컬럼에 저장할 수 있는 값 2가지를 쓰시오. (3) 위 코드를 고쳐 쓰시오.</p>`,
+<p>(1) 남성을 선택했을 때 서버로 전송되는 gender 값을 쓰시오. (2) perfume 테이블의 gender 컬럼에 저장할 수 있는 값 2가지를 쓰시오. (3) 위 코드를 고쳐 쓰시오.</p>
+[[snip:c1:2-13:perfume 테이블 정의(SQL)]]`,
  items:[T('(1)','남자',{ans:['남자']}),T('(2)',"'남성', '여성'",{has:['남성','여성']}),A('(3)','<option value="남성">남성</option>\n<option value="여성">여성</option>',{has:['value="남성"','value="여성"']})],exp:'화면에 보이는 글자가 아니라 value 값이 전송된다. CHECK (gender IN (\'남성\', \'여성\')).'},
 
 /* ============================== D ============================== */
@@ -274,7 +297,9 @@ public String result(____②____ model) {
         th:classappend="&#36;{p.gender} == '남성' ? 'male' : 'female'"&gt;이름&lt;/td&gt;
     ...
 &lt;/tr&gt;</code></pre>
-<p>(2) Controller에서 Model에 담는 이름만 <code>"list"</code>로 바꾸고 result.html은 그대로 두었다. 결과로 알맞은 것을 고르시오.</p>`,
+<p>(2) Controller에서 Model에 담는 이름만 <code>"list"</code>로 바꾸고 result.html은 그대로 두었다. 결과로 알맞은 것을 고르시오.</p>
+[[snip:c7:40-40:PerfumeService의 메서드 선언]]
+[[snip:c5:14-25:PerfumeDTO]]`,
  items:[T('①','GetMapping',{ans:['getmapping','@getmapping']}),T('②','Model',{ans:['model']}),T('③','selectAll',{ans:['selectall']}),T('④','addAttribute',{ans:['addattribute']}),T('⑤','result',{ans:['result']}),T('⑥','each',{ans:['each']}),T('⑦','surveyResponselist',{ans:['surveyresponselist']}),T('⑧','p.name',{ans:['p.name']}),
   C('(2)',['㉠ 500 오류 화면','㉡ 표 머리글만 나오고 데이터 행이 없음','㉢ 정상 표시'],1)],
  exp:'${surveyResponselist}가 null이면 th:each는 에러 없이 0번 반복(행 없음). genderCnt는 그대로라 상단 응답자 수는 정상.'},
@@ -290,7 +315,9 @@ public String result(____②____ model) {
         dtoList.____③____(toDTO(entity));
     }
     return ____④____;
-}</code></pre>`,
+}</code></pre>
+[[snip:c4:20-36:PerfumeEntity]]
+[[snip:c7:18-24:PerfumeService의 필드]]`,
  items:[A('(1)','List<PerfumeEntity> findByAgeGreaterThanEqualOrderByCompletionTimeDesc(int age);',{has:['findbyagegreaterthanequal','orderbycompletiontimedesc']}),
   T('(2) ①','pr.findByAgeGreaterThanEqualOrderByCompletionTimeDesc(age)',{has:['findbyagegreaterthanequalorderbycompletiontimedesc(age)']}),T('(2) ②','entityList',{ans:['entitylist']}),T('(2) ③','add',{ans:['add']}),T('(2) ④','dtoList',{ans:['dtolist']})],
  exp:'findBy + Age + GreaterThanEqual(이상) + OrderBy + CompletionTime + Desc. 필드명은 Entity camelCase를 대문자 시작으로.'},
@@ -306,7 +333,8 @@ public String result(____②____ model) {
         .____③____();
     ____④____;
 }</code></pre>
-<p>(2) Entity를 만들 때 <code>no</code>와 <code>completionTime</code>에는 값을 넣지 않는다. 각각 값을 넣어 주는 것을 [DB의 자동 증가, JPA Auditing] 중에서 골라 쓰시오.</p>`,
+<p>(2) Entity를 만들 때 <code>no</code>와 <code>completionTime</code>에는 값을 넣지 않는다. 각각 값을 넣어 주는 것을 [DB의 자동 증가, JPA Auditing] 중에서 골라 쓰시오.</p>
+[[snip:c7:18-24:PerfumeService의 필드]]`,
  items:[T('①','builder',{ans:['builder']}),T('②','getName',{ans:['getname']}),T('③','build',{ans:['build']}),T('④','pr.save(entity)',{ans:['pr.save(entity)','save(entity)']}),
   C('(2) no',['DB의 자동 증가','JPA Auditing'],0),C('(2) completionTime',['DB의 자동 증가','JPA Auditing'],1)],
  exp:'no: @GeneratedValue(IDENTITY) / completionTime: @CreatedDate + @EntityListeners(AuditingEntityListener.class) + @EnableJpaAuditing.'},
@@ -337,7 +365,9 @@ public void update(Integer no, PerfumeDTO dto) {
 
 &lt;!-- edit.html : 기존 이름을 입력칸에 채워 보여 준다 --&gt;
 &lt;input type="text" name="name" ____⑧____="&#36;{perfume.name}"&gt;</code></pre>
-<p>(3) 없는 번호로 /edit/99 를 요청했을 때 발생하는 예외의 클래스 이름을 위 코드에서 찾아 쓰시오.</p>`,
+<p>(3) 없는 번호로 /edit/99 를 요청했을 때 발생하는 예외의 클래스 이름을 위 코드에서 찾아 쓰시오.</p>
+[[snip:c7:18-24:PerfumeService의 필드]]
+[[snip:c8:42-43:PerfumeController의 결과 조회 메서드]]`,
  items:[T('①','GET',{ans:['get']}),T('②','"edit"',{ans:['edit']}),T('③','POST',{ans:['post']}),T('④','"redirect:/result"',{ans:['redirect:/result']}),
   T('⑤','@PathVariable',{ans:['@pathvariable','pathvariable']}),T('⑥','addAttribute',{ans:['addattribute']}),T('⑦','findById',{ans:['findbyid']}),T('⑧','th:value',{ans:['th:value']}),
   T('(3)','EntityNotFoundException',{ans:['entitynotfoundexception']})],
@@ -373,7 +403,8 @@ List&lt;PerfumeEntity&gt; ____⑥____(String favoriteScent, Sort sort);
     &lt;/select&gt;
     &lt;button&gt;검색&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-<p>(3) ③에서 <code>required = false</code>를 빼면, 검색 조건 없이 /result 로 처음 접속했을 때 몇 번 오류가 나는지 상태 코드를 쓰시오.</p>`,
+<p>(3) ③에서 <code>required = false</code>를 빼면, 검색 조건 없이 /result 로 처음 접속했을 때 몇 번 오류가 나는지 상태 코드를 쓰시오.</p>
+[[snip:c7:40-47:PerfumeService의 selectAll()]]`,
  items:[T('①','GET',{ans:['get']}),T('②','쿼리 스트링 (쿼리 파라미터)',{any:['쿼리','query']}),
   T('③','@RequestParam',{ans:['@requestparam','requestparam']}),T('④','selectAll',{ans:['selectall']}),T('⑤','list',{ans:['list']}),T('⑥','findByFavoriteScent',{ans:['findbyfavoritescent']}),T('⑦','GET',{ans:['get']}),T('⑧','scent',{ans:['scent']}),
   T('(3)','400',{ans:['400']})],
@@ -409,6 +440,7 @@ const qRatio=q=>q.items.filter((_,n)=>mark(q,n)).length/q.items.length;
 const showFb=q=>ST.done||ST.rev.has(q.id);
 
 /* ---------- 시작 ---------- */
+const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 $('#goBtn').onclick=()=>{
   const sel=document.querySelector('input[name=sset]:checked').value;
   const mode=document.querySelector('input[name=smode]:checked').value;
@@ -417,9 +449,10 @@ $('#goBtn').onclick=()=>{
   else if(sel==='part') set=Q.filter(q=>q.p===$('#sPart').value);
   else{
     const want={A:4,B:2,C:4,D:2,E:1};set=[];
-    for(const p in want){const pool=Q.filter(q=>q.p===p).sort(()=>Math.random()-.5);set.push(...pool.slice(0,want[p]))}
-    set.sort((a,b)=>Q.indexOf(a)-Q.indexOf(b));
+    for(const p in want){const pool=shuf(Q.filter(q=>q.p===p));set.push(...pool.slice(0,want[p]))}
   }
+  // 파트 순서(A→E)는 유지하고, 체크하면 각 파트 안에서 문제 순서를 섞는다
+  set=Object.keys(PTS).flatMap(p=>{const g=set.filter(q=>q.p===p);return $('#sShuf').checked?shuf(g):g.sort((a,b)=>Q.indexOf(a)-Q.indexOf(b))});
   newState(set,mode,Math.max(0,parseInt($('#sMin').value)||0),$('#sName').value.trim());
   $('#start').classList.add('hide');$('#result').classList.add('hide');$('#exam').classList.remove('hide');
   $('#hName').textContent=ST.name?'수험자: '+ST.name:'';
@@ -456,7 +489,7 @@ $('#pal').onclick=e=>{const b=e.target.closest('button');if(b){ST.cur=+b.dataset
 
 function drawQ(){
   const q=ST.set[ST.cur],fb=showFb(q),a=ST.ans[q.id];
-  let h=`<div class="qh"><span class="qn">문제 ${ST.cur+1}.</span><span>[${q.id}] ${q.title}</span><span class="pt">${q.p} 파트 · ${PTS[q.p]}점</span></div><div class="qb">${q.body}</div>`;
+  let h=`<div class="qh"><span class="qn">문제 ${ST.cur+1}.</span><span>[${q.id}] ${q.title}</span><span class="pt">${q.p} 파트 · ${PTS[q.p]}점</span></div><div class="qb">${snips(q.body)}</div>`;
   h+=`<div class="ansbox"><h4>답안 입력</h4>`;
   q.items.forEach((it,n)=>{
     const v=a[n],dis=fb?'disabled':'';
@@ -697,6 +730,15 @@ function drawToc(cur){
   const c=$('#toc a.cur');if(c&&c.scrollIntoView)c.scrollIntoView({block:'nearest'});
 }
 
+/* ---------- 본문의 [[snip:코드id:시작-끝:제목]] 을 부록 2 코드 일부로 바꿈 ---------- */
+function snips(html){
+  return html.replace(/\[\[snip:(\w+):(\d+)-(\d+):([^\]]*)\]\]/g,(_,id,a,b,t)=>{
+    const c=CODE.find(x=>x.id===id),L=c.text.replace(/\n$/,'').split('\n');a=+a;b=+b;
+    const body=L.slice(a-1,b).map(l=>'<span class="cl">'+(l?esc(l):'&#8203;')+'</span>').join('');
+    return '<p class="note2">※ 참고 — '+esc(t)+' ('+esc(c.file)+' '+(a===b?a+'행':a+'~'+b+'행')+')</p><pre class="code" style="counter-reset:ln '+(a-1)+'">'+body+'</pre>';
+  });
+}
+
 /* ---------- 문제+답변 카드 ---------- */
 function corr(it){
   if(it.k==='c')return esc(it.opts[it.ok]);
@@ -707,7 +749,7 @@ function corr(it){
 function qaCard(q){
   const rows=q.items.map(it=>`<div class="ai"><b>${esc(it.l)}</b><span class="cor">${corr(it)}</span></div>`).join('');
   return `<div class="qa" id="qa-${q.id}"><h3>${q.id}. ${esc(q.title)} <small>${q.p} 파트 · ${PTS[q.p]}점</small></h3>
-  <div class="q">${q.body}</div><div class="a">${rows}${q.exp?`<div class="exp"><b>해설</b> ${q.exp}</div>`:''}</div></div>`;
+  <div class="q">${snips(q.body)}</div><div class="a">${rows}${q.exp?`<div class="exp"><b>해설</b> ${q.exp}</div>`:''}</div></div>`;
 }
 function codeBox(c){
   const lines=c.text.replace(/\n$/,'').split('\n').map(l=>`<span class="cl">${l?esc(l):'&#8203;'}</span>`).join('');
