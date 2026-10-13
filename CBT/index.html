@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>백엔드 역량평가 학습·연습</title>
+<style>
+  :root{--navy:#1f3a5f;--blue:#2f6db5;--lblue:#cfe0f5;--bg:#e9edf2;--line:#b8c2cf;--ok:#2e7d32;--ng:#c62828;--warn:#ef8f00;--fs:16px}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{word-break:keep-all;font-family:"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;background:var(--bg);color:#1c1c1c;font-size:var(--fs);line-height:1.65}
+  button{font:inherit;cursor:pointer}
+  code{background:#eef0f3;padding:1px 5px;border-radius:3px;font-family:Consolas,"D2Coding",monospace;font-size:.92em}
+  pre{background:#f3f5f8;border:1px solid #dde2e8;padding:10px 12px;border-radius:4px;overflow-x:auto;font-family:Consolas,"D2Coding",monospace;font-size:.88em;line-height:1.5;margin:8px 0}
+  pre code{background:none;padding:0;font-size:1em}
+  table.t{border-collapse:collapse;margin:8px 0;font-size:.92em}
+  table.t td,table.t th{border:1px solid #9aa6b5;padding:3px 10px}
+  table.t th{background:var(--lblue)}
+  .hide{display:none!important}
+
+  /* ---------- 시작 화면 ---------- */
+  #start{min-height:100%;display:flex;flex-direction:column}
+  .topbar{background:var(--navy);color:#fff;padding:10px 20px;font-weight:700;font-size:1.1em;letter-spacing:.5px}
+  .login{background:#fff;border:1px solid var(--line);max-width:760px;width:calc(100% - 32px);margin:28px auto;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .login h2{margin:0;background:var(--blue);color:#fff;padding:10px 18px;font-size:1.05em}
+  .login .in{padding:18px 22px}
+  .row{display:flex;gap:10px;align-items:center;margin:10px 0;flex-wrap:wrap}
+  .row>b{min-width:92px}
+  .row input[type=text],.row input[type=number],.row select{font:inherit;padding:5px 8px;border:1px solid #8896a8;border-radius:3px}
+  .row label{margin-right:10px;cursor:pointer}
+  .notice{border:1px solid var(--line);background:#fafbfd;padding:10px 14px;font-size:.9em}
+  .notice li{margin:3px 0}
+  .btn{border:1px solid #6f7e92;background:linear-gradient(#fff,#dfe5ec);padding:6px 18px;border-radius:3px;color:#1c1c1c}
+  .btn:hover{background:linear-gradient(#fff,#cfd8e3)}
+  .btn.pri{background:linear-gradient(#3b80d0,#2459a0);border-color:#1b4684;color:#fff;font-weight:700}
+  .btn.pri:hover{background:linear-gradient(#4a8fe0,#2a66b4)}
+  .btn.big{padding:9px 38px;font-size:1.05em}
+
+  /* ---------- 시험 화면 ---------- */
+  #exam,#result{height:100%;display:flex;flex-direction:column}
+  .hdr{background:var(--navy);color:#fff;display:flex;align-items:center;gap:18px;padding:6px 16px;flex-wrap:wrap}
+  .hdr .tt{font-weight:700;font-size:1.05em}
+  .hdr .sp{flex:1}
+  .hdr .fsz button{background:#3a5a86;color:#fff;border:1px solid #6d8bb5;padding:1px 9px;border-radius:2px;margin-left:3px}
+  .hdr .fsz button.on{background:#fff;color:var(--navy);font-weight:700}
+  .timer{background:#0f2339;border:1px solid #6d8bb5;padding:2px 12px;border-radius:3px;font-family:Consolas,monospace;font-size:1.15em;letter-spacing:1px}
+  .timer.warn{color:#ffd54f}
+  .sub{background:#f6f8fb;border-bottom:1px solid var(--line);padding:5px 16px;font-size:.9em;display:flex;gap:22px;flex-wrap:wrap}
+  .sub b{color:var(--blue)}
+  .main{flex:1;min-height:0;display:flex;gap:10px;padding:10px}
+  .qpanel{flex:1;min-width:0;background:#fff;border:1px solid var(--line);overflow:auto}
+  .qh{background:var(--lblue);border-bottom:1px solid var(--line);padding:8px 16px;font-weight:700;position:sticky;top:0;z-index:2;display:flex;gap:10px;flex-wrap:wrap}
+  .qh .qn{color:var(--navy)}
+  .qh .pt{margin-left:auto;color:#555;font-weight:400}
+  .qb{padding:14px 20px}
+  .qb p{margin:6px 0}
+  .ansbox{margin:6px 20px 24px;border:2px solid var(--blue);border-radius:4px}
+  .ansbox>h4{margin:0;background:var(--blue);color:#fff;padding:3px 12px;font-size:.92em}
+  .it{display:block;padding:8px 14px;border-bottom:1px dashed #c4ccd7}
+  .it:last-child{border-bottom:0}
+  .it .lb{display:inline-block;min-width:44px;font-weight:700;color:var(--navy)}
+  .it input[type=text],.it textarea{font:inherit;width:calc(100% - 52px);padding:5px 8px;border:1px solid #8896a8;border-radius:3px;font-family:Consolas,"Malgun Gothic",monospace;vertical-align:top}
+  .it textarea{resize:vertical;min-height:64px}
+  .it input:disabled,.it textarea:disabled{background:#f1f1f1;color:#333}
+  .opts{display:inline-flex;flex-direction:column;gap:2px;vertical-align:top;width:calc(100% - 52px)}
+  .opts label{cursor:pointer;padding:1px 4px;border-radius:3px}
+  .opts label:hover{background:#eef4fb}
+  .fb{margin:6px 0 0 44px;padding:6px 10px;border-radius:3px;font-size:.92em;border-left:5px solid}
+  .fb.ok{background:#eaf6eb;border-color:var(--ok)}
+  .fb.ng{background:#fdecec;border-color:var(--ng)}
+  .fb .mk{border:1px solid;border-radius:3px;background:#fff;padding:0 8px;margin-right:6px;font-weight:700}
+  .fb.ok .mk{color:var(--ok);border-color:var(--ok)}
+  .fb.ng .mk{color:var(--ng);border-color:var(--ng)}
+  .fb .cor{color:#0d47a1;font-weight:700}
+  .exp{margin:6px 14px 12px;padding:8px 12px;background:#fff8e1;border:1px solid #f0c040;border-radius:3px;font-size:.92em}
+  .side{width:270px;flex:none;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line)}
+  .side h3{margin:0;background:var(--navy);color:#fff;padding:6px 12px;font-size:.98em;text-align:center}
+  .pal{padding:10px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;overflow:auto;flex:1;align-content:start}
+  .pal button{border:1px solid #6f7e92;background:#fff;border-radius:3px;padding:4px 0;position:relative}
+  .pal button.part{background:var(--lblue)}
+  .pal button.cur{outline:3px solid var(--warn);outline-offset:-1px}
+  .pal button.some{background:#cfe0f5}
+  .pal button.all{background:var(--blue);color:#fff;border-color:#1b4684}
+  .pal button.r-ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+  .pal button.r-pt{background:#ffb74d;border-color:var(--warn)}
+  .pal button.r-ng{background:var(--ng);color:#fff;border-color:var(--ng)}
+  .legend{border-top:1px solid var(--line);padding:6px 10px;font-size:.78em;display:flex;gap:8px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:11px;height:11px;border:1px solid #6f7e92;vertical-align:-1px;margin-right:3px}
+  .ftr{background:#dfe5ec;border-top:1px solid var(--line);padding:8px 14px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .ftr .sp{flex:1}
+
+  /* ---------- 모달 ---------- */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:50}
+  .modal .box{background:#fff;border:2px solid var(--navy);width:min(440px,92vw)}
+  .modal h3{margin:0;background:var(--navy);color:#fff;padding:8px 14px;font-size:1em}
+  .modal .bd{padding:18px 20px;text-align:center}
+  .modal .bt{padding:0 0 16px;text-align:center;display:flex;gap:10px;justify-content:center}
+
+  /* ---------- 결과 ---------- */
+  .res{overflow:auto;flex:1;padding:16px}
+  .score{background:#fff;border:1px solid var(--line);max-width:900px;margin:0 auto 14px}
+  .score h2{margin:0;background:var(--blue);color:#fff;padding:8px 16px;font-size:1.05em}
+  .score .big{font-size:2.4em;font-weight:700;color:var(--navy);text-align:center;padding:12px 0 2px}
+  .score .sm{text-align:center;color:#555;padding-bottom:12px}
+  table.rt{width:100%;border-collapse:collapse;font-size:.92em}
+  table.rt th,table.rt td{border:1px solid #c4ccd7;padding:5px 10px;text-align:center}
+  table.rt th{background:var(--lblue)}
+  table.rt td.l{text-align:left}
+  .m-ok{color:var(--ok);font-weight:700}.m-pt{color:var(--warn);font-weight:700}.m-ng{color:var(--ng);font-weight:700}
+
+  @media (max-width:860px){
+    #exam{height:auto;min-height:100%}
+    .main{flex-direction:column}
+    .side{width:auto}
+    .qpanel{overflow:visible}
+    .pal{grid-template-columns:repeat(8,1fr)}
+  }
+
+  /* ---------- 메인 · 학습하기 ---------- */
+  .topbar .hl,.hdr .hl{color:#cfe0f5;text-decoration:none;margin-right:16px;font-weight:400;font-size:.9em;border:1px solid #6d8bb5;border-radius:3px;padding:1px 10px}
+  .topbar .hl:hover,.hdr .hl:hover{background:#3a5a86;color:#fff}
+  #home{min-height:100%;display:flex;flex-direction:column}
+  .hero{text-align:center;padding:44px 16px 10px}
+  .hero h1{margin:0 0 6px;color:var(--navy);font-size:2em}
+  .hero p{margin:0;color:#556}
+  .menu2{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;padding:28px 16px 48px}
+  .mcard{width:330px;max-width:100%;background:#fff;border:2px solid var(--blue);border-radius:8px;padding:26px 22px;text-align:center;text-decoration:none;color:inherit;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:.15s}
+  .mcard:hover{background:#eef4fb;transform:translateY(-3px);box-shadow:0 6px 14px rgba(0,0,0,.14)}
+  .mcard .ic{display:block;font-size:2.6em;line-height:1.2}
+  .mcard b{display:block;font-size:1.5em;color:var(--navy);margin:6px 0}
+  .mcard small{display:block;color:#556;font-size:.9em;line-height:1.6}
+  #study{height:100%;display:flex;flex-direction:column}
+  .mbtn{display:none;background:#3a5a86;color:#fff;border:1px solid #6d8bb5;border-radius:3px;padding:1px 10px}
+  .stmain{flex:1;min-height:0;display:flex;position:relative}
+  #toc{width:310px;flex:none;overflow:auto;background:#fff;border-right:1px solid var(--line);padding:8px 6px;font-size:.92em}
+  #toc a{display:block;color:#1c1c1c;text-decoration:none;padding:3px 8px;border-radius:3px}
+  #toc a:hover{background:#eef4fb}
+  #toc a.cur{background:var(--blue);color:#fff}
+  #toc .tochome{font-weight:700;margin-bottom:4px}
+  #toc details>summary{cursor:pointer;list-style:none;font-weight:700}
+  #toc details>summary::-webkit-details-marker{display:none}
+  #toc details>summary a{display:inline-block;width:calc(100% - 20px)}
+  #toc details>summary::before{content:"▸";display:inline-block;width:18px;text-align:center;color:#667}
+  #toc details[open]>summary::before{content:"▾"}
+  #toc ul{list-style:none;margin:0;padding:0 0 0 14px}
+  #toc .leaf a{font-weight:400}
+  #stBody{flex:1;min-width:0;overflow:auto;padding:18px 28px 40px;background:#fff}
+  #stBody h2{color:var(--navy);border-bottom:3px solid var(--navy);padding-bottom:6px;margin:4px 0 14px}
+  #stBody h3.sub,#stBody>h3{color:var(--navy)}
+  table.t.w{width:100%}
+  table.t.w th,table.t.w td{vertical-align:top;text-align:left}
+  .tip{background:#fff8e1;border:1px solid #f0c040;border-radius:4px;padding:6px 12px;font-size:.92em}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:12px 0}
+  .card{display:block;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:4px;padding:10px 14px;text-decoration:none;color:inherit;background:#fafbfd}
+  .card:hover{background:#eef4fb}
+  .card b{display:block;color:var(--navy)}
+  .card span{font-size:.85em;color:#667}
+  .pn{display:flex;justify-content:space-between;gap:10px;margin-top:26px;flex-wrap:wrap}
+  .pn .btn{text-decoration:none;display:inline-block}
+  .qa{border:2px solid var(--blue);border-radius:6px;margin:0 0 22px;overflow:hidden}
+  .qa>h3{margin:0;padding:7px 14px;background:var(--lblue);color:var(--navy);font-size:1.02em;border-bottom:2px solid var(--blue)}
+  .qa>h3 small{float:right;font-weight:400;color:#556}
+  .qa .q,.qa .a{padding:10px 14px}
+  .qa .q::before,.qa .a::before{display:inline-block;color:#fff;font-size:.78em;padding:0 10px;border-radius:10px;margin-bottom:4px}
+  .qa .q::before{content:"문제";background:#555}
+  .qa .a{border-top:2px dashed #999;background:#f3faf3}
+  .qa .a::before{content:"답변";background:var(--ok)}
+  .qa .ai{padding:2px 0}
+  .qa .ai b{display:inline-block;min-width:64px;color:var(--navy);vertical-align:top}
+  .qa .ai .cor{display:inline-block;color:#0d47a1;font-weight:700;max-width:calc(100% - 72px)}
+  .qa .ai .cor pre{margin:2px 0;font-weight:400;color:#1c1c1c}
+  .qa .exp{margin:8px 0 0}
+  .path{font-family:Consolas,monospace;color:#556;font-size:.88em;margin:4px 0}
+  pre.code{counter-reset:ln;padding:8px 0;background:#f8f9fb}
+  pre.code .cl{display:block;white-space:pre;tab-size:4;padding-right:12px}
+  pre.code .cl::before{counter-increment:ln;content:counter(ln);display:inline-block;width:3em;text-align:right;margin-right:12px;padding-right:8px;color:#8a95a5;border-right:1px solid #cfd6df;user-select:none}
+  .shade{display:none}
+  @media (max-width:860px){
+    .mbtn{display:inline-block}
+    #toc{position:absolute;z-index:20;top:0;bottom:0;left:0;width:84%;max-width:340px;transform:translateX(-102%);transition:transform .2s;box-shadow:2px 0 10px rgba(0,0,0,.3)}
+    #study.menu #toc{transform:none}
+    #study.menu .shade{display:block;position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:10}
+    #stBody{padding:14px 14px 40px}
+    .hdr .fsz{display:none}
+    #study{height:100%}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= 메인 ================= -->
+<div id="home">
+  <div class="topbar">백엔드 역량평가 · 학습과 연습</div>
+  <div class="hero"><h1>백엔드 역량평가</h1><p>Spring Boot · JPA 향수 설문(survey) 프로젝트 기반 페이퍼 평가 대비</p></div>
+  <div class="menu2">
+    <a class="mcard" href="#quiz"><span class="ic">✏️</span><b>문제풀기</b><small>CBT 화면으로 모의고사 · 전체 30문항 · 파트별 연습<br>제출하면 채점과 해설</small></a>
+    <a class="mcard" href="#study"><span class="ic">📖</span><b>학습하기</b><small>학습자료집을 목차별로 보기<br>평가 안내 · 문제은행 · 참고 시트 · 기준 코드</small></a>
+  </div>
+</div>
+
+<!-- ================= 학습하기 ================= -->
+<div id="study" class="hide">
+  <div class="hdr">
+    <button class="mbtn" id="stMenu">☰ 목차</button>
+    <a class="hl" href="#">← 메인</a>
+    <span class="tt">학습하기</span>
+    <span class="sp"></span>
+    <span class="fsz">글자크기
+      <button data-fs="16" class="on">100%</button><button data-fs="20">125%</button><button data-fs="24">150%</button>
+    </span>
+  </div>
+  <div class="stmain">
+    <nav id="toc"></nav>
+    <div class="shade" id="stShade"></div>
+    <main id="stBody"></main>
+  </div>
+</div>
+
+<!-- ================= 시작 화면 ================= -->
+<div id="start" class="hide">
+  <div class="topbar"><a class="hl" href="#">← 메인</a>백엔드 역량평가 CBT 연습 &nbsp;|&nbsp; Spring Boot · JPA 향수 설문(survey) 프로젝트</div>
+  <div class="login">
+    <h2>수험자 정보 및 시험 선택</h2>
+    <div class="in">
+      <div class="row"><b>수험자명</b><input type="text" id="sName" placeholder="이름 (선택)" maxlength="20"></div>
+      <div class="row"><b>시험 구성</b>
+        <label><input type="radio" name="sset" value="mock" checked> 모의고사 13문항 (A4·B2·C4·D2·E1, 100점, 랜덤 출제)</label>
+        <label><input type="radio" name="sset" value="all"> 문제은행 전체 30문항</label>
+        <label><input type="radio" name="sset" value="part"> 파트별</label>
+        <select id="sPart"><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select>
+      </div>
+      <div class="row"><b>진행 방식</b>
+        <label><input type="radio" name="smode" value="exam" checked> 시험 모드 (제출 후 채점)</label>
+        <label><input type="radio" name="smode" value="study"> 학습 모드 (문제마다 [정답 확인])</label>
+      </div>
+      <div class="row"><b>제한 시간</b><input type="number" id="sMin" min="0" max="600" value="60" style="width:80px"> 분 <span style="color:#666;font-size:.88em">(0 = 무제한 · 연습용 설정, 실제 시험 시간과 무관)</span></div>
+      <div class="notice"><b>유의사항</b>
+        <ul>
+          <li>빈칸은 정답과 철자·대소문자가 달라도 공백·세미콜론·따옴표는 무시하고 채점합니다. 서술형은 핵심 단어로 자동 채점하므로 <b>제출 후 ○/×를 직접 고쳐</b> 최종 점수를 맞추세요.</li>
+          <li>코드 문제는 한 칸에 한 줄만 써도 됩니다. 철자, import, 세미콜론 같은 작은 실수는 시험에서도 감점하지 않습니다.</li>
+          <li>배점은 시험 기준(A 5 · B 10 · C 6 · D 10 · E 16점)이며, 문항 안의 빈칸 수로 나누어 부분 점수를 줍니다.</li>
+        </ul>
+      </div>
+      <div class="row" style="justify-content:center;margin-top:18px"><button class="btn pri big" id="goBtn">시험 시작</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 시험 화면 ================= -->
+<div id="exam" class="hide">
+  <div class="hdr">
+    <span class="tt">백엔드 역량평가 CBT</span>
+    <span id="hName"></span>
+    <span class="sp"></span>
+    <span class="fsz">글자크기
+      <button data-fs="16" class="on">100%</button><button data-fs="20">125%</button><button data-fs="24">150%</button>
+    </span>
+    <span>남은 시간 <span class="timer" id="timer">00:00:00</span></span>
+  </div>
+  <div class="sub">
+    <span>전체 문제 수: <b id="cTotal">0</b></span>
+    <span>안 푼 문제 수: <b id="cLeft">0</b></span>
+    <span id="cMode"></span>
+  </div>
+  <div class="main">
+    <div class="qpanel" id="qpanel"></div>
+    <div class="side">
+      <h3>답안 표기란</h3>
+      <div class="pal" id="pal"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </div>
+  <div class="ftr" id="ftr"></div>
+</div>
+
+<!-- ================= 결과 화면 ================= -->
+<div id="result" class="hide">
+  <div class="hdr"><span class="tt">백엔드 역량평가 CBT — 채점 결과</span><span class="sp"></span><span id="rName"></span></div>
+  <div class="res" id="resBody"></div>
+</div>
+
+<div class="modal hide" id="modal"><div class="box"><h3 id="mTitle"></h3><div class="bd" id="mBody"></div><div class="bt" id="mBtns"></div></div></div>
+
+<script src="cbt.js" defer></script>
+</body>
+</html>
